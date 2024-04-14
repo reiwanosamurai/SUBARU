@@ -1,0 +1,18 @@
+# age.csvを読み込む
+import pandas as pd
+df = pd.read_csv("./age.csv")
+df
+
+# ヒストグラムを作成する
+import matplotlib.pyplot as plt
+
+plt.xlim(0, 100)                # x軸の表示範囲
+plt.ylim(0, 10)                     # y軸の表示範囲
+plt.xlabel("Age", fontsize=20)     # x軸ラベル
+plt.ylabel("Frequency", fontsize=20) # y軸ラベル
+plt.grid(True)                       # 目盛線の表示
+plt.tick_params(labelsize = 12)      # 目盛線のラベルサイズ 
+ 
+# グラフの描画
+plt.hist(df, bins=15,rwidth = 0.8, color= 'k') # ヒストグラムの描画
+plt.show()

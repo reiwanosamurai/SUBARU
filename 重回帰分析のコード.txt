@@ -1,0 +1,23 @@
+##Pythonによる重回帰分析
+
+# shikisa.csvを読み込む
+import pandas as pd
+shikisa = pd.read_csv("./shikisa.csv")
+shikisa
+
+#説明変数と目的変数の抽出
+import numpy as np
+X = np.array(shikisa[['ColorA','ColorB','ColorC','ColorD','ColorE']])
+Y = np.array(shikisa['Preference'])
+
+#ライブラリの導入
+#エラーになる場合、anaconda promptからpip install statsmodels
+import statsmodels.api as smf
+#定数表示
+X1=smf.add_constant(X) 
+#OLS(最小二乗法)でモデル作成
+model1 = smf.OLS(Y,X1)
+#model.fitで実際の計算
+result = model1.fit()
+#結果表示
+result.summary()

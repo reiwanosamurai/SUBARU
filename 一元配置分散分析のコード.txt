@@ -1,0 +1,13 @@
+## 一元配置分散分析
+
+# anova.csvを読み込む
+import pandas as pd
+dat = pd.read_csv("./anova.csv")
+dat
+
+# 分散分析表の作成
+import statsmodels.formula.api as smf
+import statsmodels.api as sm
+mod = smf.ols("Temp ~ Exp", data = dat).fit()
+aov_table = sm.stats.anova_lm(mod, typ=2)
+print(aov_table)

@@ -1,0 +1,55 @@
+# 仮説検定：対応のあるt検定
+
+# bodytemp.csvを読み込む
+import pandas as pd
+df = pd.read_csv("./bodytemp.csv")
+df
+
+## 対応のあるt検定
+import numpy as np
+import scipy as sp
+from scipy import stats
+
+before = df.query('Drug == "before"')["BT"]
+after = df.query('Drug == "after"')["BT"]
+before = np.array(before)
+after = np.array(after)
+diff = after - before
+diff
+
+stats.ttest_rel(after, before)
+
+
+## 対応のないt検定
+
+# bodytemp2.csvを読み込む
+import pandas as pd
+df = pd.read_csv("./bodytemp2.csv")
+df
+
+import numpy as np
+import scipy as sp
+from scipy import stats
+
+# 平均値
+before = df.query('Drug == "before"')["BT"]
+after = df.query('Drug == "after"')["BT"]
+before = np.array(before)
+after = np.array(after)
+mean_bef = np.mean(before)
+mean_aft = np.mean(after)
+
+# 分散
+sigma_bef = np.var(before, ddof = 1)
+sigma_aft = np.var(after, ddof = 1)
+
+# サンプルサイズ
+m = len(before)
+n = len(after)
+
+# t値
+import scipy as sp
+from scipy import stats
+t_value = (mean_aft - mean_bef) / np.lib.scimath.sqrt((sigma_bef/m + sigma_aft/n))
+t_value
+stats.ttest_ind(after, before, equal_var = False)

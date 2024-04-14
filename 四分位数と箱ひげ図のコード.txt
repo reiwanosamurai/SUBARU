@@ -1,0 +1,26 @@
+# percent.csvを読み込む
+import pandas as pd
+df = pd.read_csv("./percent.csv")
+df
+
+#数列のパーセント点と四分位数を求める
+import numpy as np
+x25 = np.percentile(df,25)
+x50 = np.percentile(df,50)
+x75 = np.percentile(df,75)
+x50b = np.median(df)
+
+print ("第1四分位数:", x25)
+print ("第2四分位数:", x50)
+print ("第3四分位数:", x75)
+print ("中央値:", x50b)
+
+#箱ヒゲ図を作成する
+import matplotlib.pyplot as plt
+
+fig, ax = plt.subplots()
+bp = ax.boxplot(df)
+plt.grid() #横線ラインを入れることができる
+
+#描画
+plt.show()

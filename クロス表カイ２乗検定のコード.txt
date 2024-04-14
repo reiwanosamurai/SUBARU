@@ -1,0 +1,19 @@
+# cross.csvを読み込む
+import pandas as pd
+df = pd.read_csv("./cross.csv")
+df
+
+# 分割表に変換
+crs = pd.pivot_table(
+	data = df,
+	values = "freq",
+	aggfunc = "sum",
+	index = "color",
+	columns = "click"
+)
+print(crs)
+
+# カイ2乗検定
+import scipy as sp
+from scipy import stats
+sp.stats.chi2_contingency(crs, correction = False)

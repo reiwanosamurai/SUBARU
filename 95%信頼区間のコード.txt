@@ -1,0 +1,20 @@
+# 95%信頼区間の計算
+# fish.csvを読み込む
+import pandas as pd
+dat = pd.read_csv("./fish.csv")
+dat
+import math
+import pandas as pd
+from scipy.stats import t
+# 母分散の推定値として標本の不偏分散を求める
+p_var = dat.var()
+# 標本の平均を求める
+s_mean = dat.mean()
+# 標本の数(サンプルサイズ)を求める
+n = len(dat)
+# 95%信頼区間の下限値と上限値を求める
+bottom, up = t.interval(0.95, df=n-1, loc=s_mean, scale=math.sqrt(p_var/(n)))
+# 信頼区間の下限値と上限値を出力
+print ("点推定値:",s_mean) 
+print ("下側95%信頼区間:",bottom) 
+print ("上側95%信頼区間:",up) 

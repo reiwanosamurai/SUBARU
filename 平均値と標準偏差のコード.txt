@@ -1,0 +1,13 @@
+# atown.csvを読み込む
+import pandas as pd
+df = pd.read_csv("./atown.csv")
+df
+
+#平均値の計算
+mean_blood_pressure = df['血圧'].mean()
+
+#不偏標準偏差の計算（ddof=1を指定して不偏推定量を求める）
+unbiased_std_dev = df['血圧'].std(ddof=1)
+
+print(f"平均値：{mean_blood_pressure}")
+print(f"不偏標準偏差：{unbiased_std_dev}")
