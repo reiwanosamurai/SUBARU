@@ -1,0 +1,20 @@
+from sklearn.model_selection import train_test_split
+from sklearn.tree import DecisionTreeClassifier
+X_train, X_test, y_train, y_test = train_test_split(X, y, random_state = 0)
+tree_clf = DecisionTreeClassifier().fit(X_train, y_train)
+
+from sklearn.ensemble import RandomForestClassifier
+random_forest = RandomForestClassifier(n_estimators=100, random_state = 0).fit(X_train, y_train)
+
+plt.figure(figsize = (24, 8))
+plt.subplot(121)
+plot_decision_boundary(tree_clf, X, y)
+plot_dataset(X, y)
+plt.title('DecisionTreeClassifier',fontsize=20)
+
+plt.subplot(122)
+plot_decision_boundary(random_forest, X, y)
+plot_dataset(X, y)
+plt.title('RandomForestClassifier',fontsize=20)
+
+plt.show()
